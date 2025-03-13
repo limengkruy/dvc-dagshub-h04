@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  clean_data:
+    cmd: python process_data.py
+    deps:
+    - path: data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+      hash: md5
+      md5: 0f9de68e012bd3aed5fa7cdc9fc421af
+      size: 977501
+    outs:
+    - path: data/cleaned_data.csv
+      hash: md5
+      md5: e24603d0645c6890eea3d2cf84803757
+      size: 894482
+  encode_features:
+    cmd: python process_data.py
+    deps:
+    - path: data/cleaned_data.csv
+      hash: md5
+      md5: e24603d0645c6890eea3d2cf84803757
+      size: 894482
+    outs:
+    - path: data/encoded_data.csv
+      hash: md5
+      md5: 48e7e4047194258240af20783c2bcf3a
+      size: 1201898
+  split_data:
+    cmd: python process_data.py
+    deps:
+    - path: data/encoded_data.csv
+      hash: md5
+      md5: 48e7e4047194258240af20783c2bcf3a
+      size: 1201898
+    outs:
+    - path: data/test_data.csv
+      hash: md5
+      md5: 9012a4fe43327e7954391abd9643fdca
+      size: 240997
+    - path: data/train_data.csv
+      hash: md5
+      md5: aa63aa186e56d0db561334a3702bd00e
+      size: 961579

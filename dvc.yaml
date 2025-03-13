@@ -1,0 +1,22 @@
+stages:
+  clean_data:
+    cmd: python process_data.py
+    deps:
+      - data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+    outs:
+      - data/cleaned_data.csv
+
+  encode_features:
+    cmd: python process_data.py
+    deps:
+      - data/cleaned_data.csv
+    outs:
+      - data/encoded_data.csv
+
+  split_data:
+    cmd: python process_data.py
+    deps:
+      - data/encoded_data.csv
+    outs:
+      - data/train_data.csv
+      - data/test_data.csv
